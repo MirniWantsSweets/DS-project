@@ -1,4 +1,4 @@
-public class Task extends Node implements Observador{
+public class Task extends Node implements Observer{
 int taskType; //Tipo de tarea (0 = corta, 1 = larga, 2 = rutinaria, ...)
 double totalTime;
 int ticks;
