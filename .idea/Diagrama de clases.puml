@@ -1,0 +1,39 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+abstract class Node
+class Task
+class Client
+class Project
+
+Node <|- Task
+Node <|-- Project
+Client -o Project
+Project o-- Node
+
+class Project {
+    -totalTime : double
+    +CreateNewTask()
+    +CreateNewSubProject()
+}
+
+abstract class Node {
+    -startTime : time
+    -startDate : date
+    -endTime : time
+    -endDate : date
+    -workingTime : double
+    +calculateTotalTime()
+}
+
+class Task {
+    -taskType : int
+}
+
+class Client {
+    +CreateNewProject()
+}
+
+note "Suponemos que los tiempos y las datas\nse guardaran haciendo uso de clases\npreinstaladas time y date." as N1
+
+@enduml
