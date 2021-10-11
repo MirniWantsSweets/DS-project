@@ -5,11 +5,16 @@ abstract class Node
 class Task
 class Client
 class Project
+interface Observer
+abstract class Observable
+class Clock
 
 Node <|- Task
 Node <|-- Project
 Client -o Project
 Project o-- Node
+Clock  --|> Observable
+Task  ..|> Observer
 
 class Project {
     -totalTime : double
@@ -18,6 +23,7 @@ class Project {
 }
 
 abstract class Node {
+    -nombre : string
     -startTime : time
     -startDate : date
     -endTime : time
@@ -33,7 +39,22 @@ class Task {
 class Client {
     +CreateNewProject()
 }
+interface Observer{
+    +Update()
 
-note "Suponemos que los tiempos y las datas\nse guardaran haciendo uso de clases\npreinstaladas time y date." as N1
+}
+class Clock{
+    -timer : Timer
+    -dateTime : DateTime
+    +startTimer()
+    -tick()
+}
+
+abstract class Observable{
+    +addObserver (ob: Observer)
+    +deleteObserver (ob: Observer)
+    +setChanged()
+    +notifyObservers(arg0: Observable, arg1: Object)
+}
 
 @enduml
