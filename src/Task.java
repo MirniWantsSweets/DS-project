@@ -35,6 +35,6 @@ nom = nouNom;
   public void update(){ // El observado notifica al observable, y se llama a esta función
     if(this.activa==true){
       ticks++;
-    }
-  }
+    } 
+ }
 }
