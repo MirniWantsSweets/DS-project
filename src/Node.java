@@ -8,7 +8,7 @@ public abstract class Node {
     // -endDate : date
     // -workingTime : double
     // +calculateTotalTime()*
-  private String nombre;
+  private String name;
   private Time startTime;
   private Time endTime;
   private Date startDate;
