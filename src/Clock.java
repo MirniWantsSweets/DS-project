@@ -1,5 +1,6 @@
 class Reloj implements Observable {
-
+    
+    
 
     
 }
