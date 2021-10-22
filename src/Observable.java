@@ -3,7 +3,7 @@ import java.util.List;
 import java.util.Iterator;
 
 public class Observable{
-  List<Observer> Observadores= new ArrayList();
+  List<Observer> Observadores = new ArrayList();
   public void addObserver (Observer observer){
 
     Observadores.add(observer);
