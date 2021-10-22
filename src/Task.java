@@ -25,6 +25,7 @@ public double calculateTotalTime(){
 
 private void terminar(){
 terminada = true;
+activa = false;
 }
 
 private canviNom(String nouNom){ //función para poder cambiar el nombre en cualquier momento.
@@ -35,6 +36,6 @@ nom = nouNom;
   public void update(){ // El observado notifica al observable, y se llama a esta función
     if(this.activa==true){
       ticks++;
-    } 
- }
+    }
+  }
 }

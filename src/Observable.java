@@ -15,7 +15,7 @@ public class Observable{
 
   };
   public void setChanged(){};
-  public void notifyObservers(Observer observer){
+  public void notifyObservers(){
 
 
     for (int i=0;i<Observadores.size(); i+=1){
