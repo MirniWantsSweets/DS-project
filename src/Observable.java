@@ -3,24 +3,24 @@ import java.util.List;
 import java.util.Iterator;
 
 public class Observable{
-  List<Observer> Observadores = new ArrayList();
+  List<Observer> Observers= new ArrayList();
   public void addObserver (Observer observer){
 
-    Observadores.add(observer);
+    Observers.add(observer);
 
   };
   public void deleteObserver (Observer observer){
 
-    Observadores.remove(Observadores.indexOf(Observadores));
+    Observers.remove(Observers.indexOf(Observers));
 
   };
   public void setChanged(){};
-  public void notifyObservers(){
+  public void notifyObservers(SingletonClock clock){
 
 
-    for (int i=0;i<Observadores.size(); i+=1){
-      Observer aux = Observadores.get(i);
-      aux.update();
+    for (int i=0;i<Observers.size(); i+=1){
+      Observer aux = Observers.get(i);
+      aux.update(clock);
     }
 
   };

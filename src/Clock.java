@@ -1,19 +1,21 @@
-java.util.Timer
-class Reloj implements Observable {
+import java.util.Timer;
+import java.util.TimerTask;
+class SingletonClock implements Observable {
 
- 
-     TimerTask timerTask = new TimerTask()
-     {
-         public void run() 
-         {
-             notifyObservers();
-         }
-     };
-    
+  void start(){
+        TimerTask timerTask = new TimerTask()
+        {
+            public void run() 
+            {
+                notifyObservers(this);
+            }
+        };
+            
 
 
-     Timer Reloj = new Timer();
+            Timer clock = new Timer();
+            
+            clock.scheduleAtFixedRate(timerTask, 0, 200);
+    }
      
-     Reloj.scheduleAtFixedRate(timerTask, 0, 200);
-
 }
