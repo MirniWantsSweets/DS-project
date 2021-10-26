@@ -22,31 +22,31 @@ public class main {
   }*/
   public static void main(String[] args) throws InterruptedException {
 
-    SingletonClock clock = new SingletonClock();
+    SingletonClock clock = new SingletonClock(); //creamos un nuevo reloj
 
-    clock.start();
-    Thread.sleep(1000);
+    clock.start(); //iniciamos el reloj
+    Thread.sleep(1000); //lo paramos 1 segundo
 
-    Project p1 = new Project("raiz");
+    Project p1 = new Project("raiz"); //creamos nuevo proyecto 
 
-    System.out.println("breakpoint 1");
+    System.out.println("breakpoint 1"); //imprime un mensaje
 
-    p1.CreateNewTask("Tasca1nivel1",clock);
+    p1.CreateNewTask("Tasca1nivel1",clock); //creamos una nueva tasca partir del proyecto
 
-    Thread.sleep(1000);
-    System.out.println("breakpoint 2");
-    Task taux = p1.getChildTaskName("Tasca1nivel1");
-    taux.start(clock);
-    p1.CreateNewSubProject("Proyecto1nivel1");
-    p1.CreateNewSubProject("Proyecto2nivel1");
-    Project aux= p1.getChildProjectName("Proyecto1nivel1");
-    taux.displayTask();
-    Thread.sleep(3000);
-    System.out.println("breakpoint 3");
-    taux.stop(clock);
-    taux.displayTask();
-    aux.CreateNewTask("Tasca1nivel2",clock);
-    aux.CreateNewTask("Tasca2nivel2",clock);
+    Thread.sleep(1000); //lo paramos 1 segundo
+    System.out.println("breakpoint 2"); //imprime un mensaje
+    Task taux = p1.getChildTaskName("Tasca1nivel1"); //recuperamos el nombre de la tasca
+    taux.start(clock); //empezamos el reloj de la tasca
+    p1.CreateNewSubProject("Proyecto1nivel1"); //creamos un subproyecto
+    p1.CreateNewSubProject("Proyecto2nivel1"); //creamos un subproyecto
+    Project aux= p1.getChildProjectName("Proyecto1nivel1"); //recuperamos el nombre del proyecto
+    taux.displayTask(); //muestra nombre, fecha en que se creó la tarea, tiempo total de la tarea y fechas de inicio y finalizacion de los intervalos
+    Thread.sleep(3000); //lo paramos 3 segundos
+    System.out.println("breakpoint 3"); //imprime un mensaje
+    taux.stop(clock); //paramos el reloj
+    taux.displayTask(); //muestra nombre, fecha en que se creó la tarea, tiempo total de la tarea y fechas de inicio y finalizacion de los intervalos
+    aux.CreateNewTask("Tasca1nivel2",clock); //creamos una nueva tasca
+    aux.CreateNewTask("Tasca2nivel2",clock); //creamos una nueva tasca
 
   }
 
