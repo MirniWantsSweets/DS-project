@@ -15,13 +15,13 @@ public class Project extends Node{
     return 0;
   }
 
-  Node getPadre(){
+  Node getPadre(){ //Retorna el padre
     return padre;
   }
 
 
 
-  Task getChildTaskName(String nombre){
+  Task getChildTaskName(String nombre){ //Retorna tarea hija en funcion del nombre
 
       for (Task x:ChildsTask){
         if (x.getName()== nombre){
@@ -31,7 +31,7 @@ public class Project extends Node{
       return null;
 
   }
-  Project getChildProjectName(String nombre){
+  Project getChildProjectName(String nombre){ //Retorna proyecto hijo en funcion del nombre
 
     for (Project x:ChildsProject){
       if (x.getName()== nombre){
@@ -41,23 +41,23 @@ public class Project extends Node{
     return null;
 
   }
-  void CreateNewTask(String name,Observable reloj) {
+  void CreateNewTask(String name,Observable reloj) { //Crea nueva tarea hija
     Task task=new Task(name);
     ChildsTask.add(task);
     Num_Childs_Task += 1;
     reloj.addObserver(task);
   }
-  void CreateNewSubProject(String name) {
+  void CreateNewSubProject(String name) { //Crea nuevo proyecto hijo
     Project proyecto=new Project(name);
     ChildsProject.add(proyecto);
     Num_Childs_Project += 1;
   }
-  void DeleteTask(Node node){
+  void DeleteTask(Node node){ //Elimina una tarea hija
 
     ChildsTask.remove(ChildsTask.indexOf(node));
     Num_Childs_Task -= 1;
   }
-  void DeleteProyecto(Project proyecto){
+  void DeleteProyecto(Project proyecto){ //Elimina un proyecto hijo
 
     ChildsProject.remove(ChildsProject.indexOf(proyecto));
     Num_Childs_Project -= 1;
