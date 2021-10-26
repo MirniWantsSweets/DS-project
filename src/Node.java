@@ -14,7 +14,7 @@ public abstract class Node {
   private Date startDate;
   private Date endDate;
   private Double workingTime;
-  protected boolean type;// task = false, project = true
+
 
   public String getName() {
     return name;
@@ -24,3 +24,4 @@ public abstract class Node {
   abstract Node getInstance();
   abstract float calculateTotalTime();
 }
+

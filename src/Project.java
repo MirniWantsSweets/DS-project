@@ -4,10 +4,12 @@ import java.util.List;
 public class Project extends Node{
 
   double TotalTime;
-  int Num_Childs;
-  Node padre;
+  int Num_Childs_Task;
+  int Num_Childs_Project;
+  Project padre;
 
-  List<Node> Childs= new ArrayList();
+  List<Task> ChildsTask= new ArrayList();
+  List<Project> ChildsProject= new ArrayList();
 
   float calculateTotalTime() {
     return 0;
@@ -17,17 +19,11 @@ public class Project extends Node{
     return padre;
   }
 
-  Node getChildIndex(int i){
-    if (i<=Num_Childs){
-      return Childs.get(i);
-    }else{
-      return null;
-    }
-  }
 
-  Node getChildName(String nombre){
 
-      for (Node x:Childs){
+  Task getChildTaskName(String nombre){
+
+      for (Task x:ChildsTask){
         if (x.getName()== nombre){
           return x;
         }
@@ -35,32 +31,44 @@ public class Project extends Node{
       return null;
 
   }
-  void CreateNewTask(String name) {
-    Task tasca=new Task(name);
-    Childs.add(tasca);
-    Num_Childs += 1;
+  Project getChildProjectName(String nombre){
+
+    for (Project x:ChildsProject){
+      if (x.getName()== nombre){
+        return x;
+      }
+    }
+    return null;
+
+  }
+  void CreateNewTask(String name,Observable reloj) {
+    Task task=new Task(name);
+    ChildsTask.add(task);
+    Num_Childs_Task += 1;
+    reloj.addObserver(task);
   }
   void CreateNewSubProject(String name) {
     Project proyecto=new Project(name);
-    Childs.add(proyecto);
-    Num_Childs += 1;
+    ChildsProject.add(proyecto);
+    Num_Childs_Project += 1;
   }
-  void DeleteTask(Node nodo){
+  void DeleteTask(Node node){
 
-    Childs.remove(Childs.indexOf(nodo));
-    Num_Childs -= 1;
+    ChildsTask.remove(ChildsTask.indexOf(node));
+    Num_Childs_Task -= 1;
   }
   void DeleteProyecto(Project proyecto){
 
-    Childs.remove(Childs.indexOf(proyecto));
-    Num_Childs -= 1;
+    ChildsProject.remove(ChildsProject.indexOf(proyecto));
+    Num_Childs_Project -= 1;
   }
 
   public Project(String nombre){
     this.TotalTime=0;
-    this.Num_Childs=0;
+    this.Num_Childs_Task=0;
+    this.Num_Childs_Project=0;
     this.name= nombre;
-    this.type=true;
+
   }
   @Override
   public Project getInstance(){

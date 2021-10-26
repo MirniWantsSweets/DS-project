@@ -15,12 +15,12 @@ public class Observable{
 
   };
   public void setChanged(){};
-  public void notifyObservers(SingletonClock clock){
+  public void notifyObservers(){
 
 
     for (int i=0;i<Observers.size(); i+=1){
       Observer aux = Observers.get(i);
-      aux.update(clock);
+      aux.update();
     }
 
   };
