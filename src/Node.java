@@ -17,11 +17,11 @@ public abstract class Node {
 
 
   public String getName() {
-    return name;
+    return name; //devuelve el nombre
   }
 
 
-  abstract Node getInstance();
-  abstract float calculateTotalTime();
+  abstract Node getInstance(); //devuelva la tasca/proyecto
+  abstract float calculateTotalTime(); //convierto los ticks en segundos
 }
 
