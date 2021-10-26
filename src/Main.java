@@ -23,7 +23,7 @@ public class main {
     Project aux= p1.getChildProjectName("Proyecto1nivel1"); //Creamos proyecto
     taux.displayTask(); //muestra nombre, fecha en que se creó la tarea, tiempo total de la tarea y fechas de inicio y finalizacion de los intervalos
     Thread.sleep(3000); //lo paramos 3 segundos
-    taux.stop(clock); //paramos el reloj
+    taux.stop(clock); //pausamos la tarea
     taux.displayTask(); //muestra nombre, fecha en que se creó la tarea, tiempo total de la tarea y fechas de inicio y finalizacion de los intervalos
     aux.CreateNewTask("Tasca1nivel2",clock); //creamos una nueva tasca
     aux.CreateNewTask("Tasca2nivel2",clock); //creamos una nueva tasca
