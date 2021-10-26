@@ -14,7 +14,7 @@ public abstract class Node {
   private Date startDate;
   private Date endDate;
   private Double workingTime;
-
+  protected Project padre;
 
   public String getName() {
     return name; //devuelve el nombre

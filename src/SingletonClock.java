@@ -7,10 +7,10 @@ class SingletonClock extends Observable {
   public SingletonClock() {
     clock = new Timer();
   }
-  LocalDateTime localtime(){
+  LocalDateTime localtime(){ //Retorna fecha actual
     return LocalDateTime.now();
   }
-  public void start(){
+  public void start(){ //Inicia conteo del timer
     TimerTask timerTask = new TimerTask()
     {
       public void run()

@@ -6,7 +6,7 @@ public class Project extends Node{
   double TotalTime;
   int Num_Childs_Task;
   int Num_Childs_Project;
-  Project padre;
+  
 
   List<Task> ChildsTask= new ArrayList();
   List<Project> ChildsProject= new ArrayList();
@@ -44,12 +44,14 @@ public class Project extends Node{
   void CreateNewTask(String name,Observable reloj) { //Crea nueva tarea hija
     Task task=new Task(name);
     ChildsTask.add(task);
+    task.padre=this;
     Num_Childs_Task += 1;
     reloj.addObserver(task);
   }
   void CreateNewSubProject(String name) { //Crea nuevo proyecto hijo
-    Project proyecto=new Project(name);
-    ChildsProject.add(proyecto);
+    Project project=new Project(name);
+    project.padre=this;
+    ChildsProject.add(project);
     Num_Childs_Project += 1;
   }
   void DeleteTask(Node node){ //Elimina una tarea hija
