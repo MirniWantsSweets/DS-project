@@ -1,4 +1,4 @@
-import java.time.LocalDateTime;
+port java.time.LocalDateTime;
 
 public class main {
   /*private void simpleTest() throws InterruptedException {
@@ -40,11 +40,11 @@ public class main {
     p1.CreateNewSubProject("Proyecto1nivel1");
     p1.CreateNewSubProject("Proyecto2nivel1");
     Project aux= p1.getChildProjectName("Proyecto1nivel1");
-
+    taux.displayTask();
     Thread.sleep(3000);
     System.out.println("breakpoint 3");
     taux.stop(clock);
-
+    taux.displayTask();
     aux.CreateNewTask("Tasca1nivel2",clock);
     aux.CreateNewTask("Tasca2nivel2",clock);
 
