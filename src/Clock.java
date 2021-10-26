@@ -1,7 +1,11 @@
 import java.util.Timer;
 import java.util.TimerTask;
+import java.time.LocalDateTime;
 class SingletonClock implements Observable {
 
+    Date localtime(){
+        return LocalDateTime.now();
+    }
   void start(){
         TimerTask timerTask = new TimerTask()
         {
