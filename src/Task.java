@@ -67,18 +67,19 @@ public class Task extends Node implements Observer{
 
     void displayTask() //Muestra nombre, fecha en que se creó la tarea, tiempo total de la tarea y fechas de inicio y finalizacion de los intervalos
   {
+    System.out.println("**********");
     System.out.println("Task: " + name + " total time = " + calculateTotalTime());
 
     if(started) System.out.println("Task Started: " + Start_time.get(0).getMonth() + "/" + Start_time.get(0).getDayOfMonth() + "/" + Start_time.get(0).getYear());
 
     for(int i=0; i < End_time.size(); i++)
     {
-      if(i == 0) { System.out.println(" TIME INTERVALS: ");}
+      if(i == 0) { System.out.println("TIME INTERVALS: ");}
       System.out.println("Interval " + (i+1) + ": ");
       System.out.println("From: " + Start_time.get(i).getMonth() + "/" + Start_time.get(i).getDayOfMonth() + "/" + Start_time.get(i).getYear() + "   " +  Start_time.get(i).getHour() + ":" + Start_time.get(i).getMinute() + ":" + Start_time.get(i).getSecond() );
       System.out.println("To: " + End_time.get(i).getMonth() + "/" + End_time.get(i).getDayOfMonth() + "/" + End_time.get(i).getYear() + "   " +  End_time.get(i).getHour() + ":" + End_time.get(i).getMinute() + ":" + End_time.get(i).getSecond());
     }
-
+    System.out.println("**********");
   }
 }
 
