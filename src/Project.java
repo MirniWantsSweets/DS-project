@@ -72,6 +72,32 @@ public class Project extends Node{
     this.name= nombre;
 
   }
+  
+  void displayProject()
+  {
+    System.out.println("**********");
+    System.out.print("Project: " + getName());
+    float totalTime = 0;
+    if(ChildsTask.isEmpty()){System.out.println("This Project doesn't have any started task yet");}
+    for(int i = 0; i < Num_Childs_Task; i++)
+    {
+      totalTime = totalTime + ChildsTask.get(i).calculateTotalTime();
+    }
+    if(!ChildsTask.isEmpty()) {System.out.println('\n' + "Tasks total time: " + TotalTime);}
+
+    totalTime = 0;
+
+    for(int i = 0; i < Num_Childs_Project; i++)
+    {
+      for(int n = 0; n < ChildsProject.get(i).Num_Childs_Task; n++)
+      {
+        totalTime = totalTime + ChildsProject.get(i).ChildsTask.get(n).calculateTotalTime();
+      }
+    }
+    if(!ChildsProject.isEmpty()) {System.out.println("SubProjects total time: " + TotalTime);}
+    System.out.println("**********");
+  }
+  
   @Override
   public Project getInstance(){
     return this;
