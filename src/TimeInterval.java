@@ -6,6 +6,7 @@ public class TimeInterval {
 
   public TimeInterval(SingletonClock clock) {
     startTime = clock.localtime();
+
   }
 
   public void endInterval(SingletonClock clock) {
@@ -18,7 +19,8 @@ public class TimeInterval {
   }
   
   public LocalDateTime getEndTime() {
-    return startTime;
+
+    return endTime;
   }
 
 }

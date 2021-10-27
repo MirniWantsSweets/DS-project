@@ -58,6 +58,18 @@ public class main {
     Thread.sleep(2000); //lo paramos 2 segundos
     p1.displayProject();
     paux.displayProject();
+
+
+
+    System.out.println("//////////////////////////////TEST B///////////////////////////////////////////");
+    Project test = new Project("TestB");
+    p1.CreateNewTask("transportation",SingletonClock.getInstance());
+    Task transportation = p1.getChildTaskName("transportation");
+    transportation.start(SingletonClock.getInstance());
+    Thread.sleep(4000);
+    transportation.stop(SingletonClock.getInstance());
+
+
   }
 
 }

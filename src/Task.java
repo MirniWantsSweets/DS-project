@@ -73,10 +73,13 @@ public class Task extends Node implements Observer{
     for(int i=0; i < timeIntervals.size(); i++)
     {
       if(i == 0) { System.out.println("TIME INTERVALS: ");}
-      System.out.println("Interval " + (i+1) + ": ");
-      System.out.println("From: " + timeIntervals.get(i).getStartTime().getMonth() + "/" + timeIntervals.get(i).getStartTime().getDayOfMonth() + "/" + timeIntervals.get(i).getStartTime().getYear() + "   " +  timeIntervals.get(i).getStartTime().getHour() + ":" + timeIntervals.get(i).getStartTime().getMinute() + ":" + timeIntervals.get(i).getStartTime().getSecond() );
-      System.out.println("To: " + timeIntervals.get(i).getEndTime().getMonth() + "/" + timeIntervals.get(i).getEndTime().getDayOfMonth() + "/" + timeIntervals.get(i).getEndTime().getYear() + "   " +  timeIntervals.get(i).getEndTime().getHour() + ":" + timeIntervals.get(i).getEndTime().getMinute() + ":" + timeIntervals.get(i).getEndTime().getSecond());
-    }
+        System.out.println("Interval " + (i+1) + ": ");
+        System.out.println("From: " + timeIntervals.get(i).getStartTime().getMonth() + "/" + timeIntervals.get(i).getStartTime().getDayOfMonth() + "/" + timeIntervals.get(i).getStartTime().getYear() + "   " +  timeIntervals.get(i).getStartTime().getHour() + ":" + timeIntervals.get(i).getStartTime().getMinute() + ":" + timeIntervals.get(i).getStartTime().getSecond() );
+      if(timeIntervals.get(i).getEndTime() != null){
+        System.out.println("To: " + timeIntervals.get(i).getEndTime().getMonth() + "/" + timeIntervals.get(i).getEndTime().getDayOfMonth() + "/" + timeIntervals.get(i).getEndTime().getYear() + "   " +  timeIntervals.get(i).getEndTime().getHour() + ":" + timeIntervals.get(i).getEndTime().getMinute() + ":" + timeIntervals.get(i).getEndTime().getSecond());
+      }
+      else {System.out.println("Task in progress");}
+      }
     System.out.println("**********");
   }
 }
