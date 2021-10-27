@@ -65,8 +65,8 @@ Task ..|> Observer
 Node --> Project
 Node --> "0..*"Task
 Client "1"--o "0..*"Project
-SingletonClock  --|> Observable
+SingletonClock "1" --|> "1"Observable
 TimeInterval "0..*" <-- Task
 Observable --> "0..*"Observer
-
+SingletonClock --* SingletonClock
 @enduml
