@@ -20,6 +20,7 @@ public class main {
     simpleTest();
     notSoSimpleTest();
   }*/
+
   public static void main(String[] args) throws InterruptedException {
 
     //SingletonClock clock = new SingletonClock(); //creamos un nuevo reloj
@@ -60,16 +61,52 @@ public class main {
     paux.displayProject();
 
 
-
     System.out.println("//////////////////////////////TEST B///////////////////////////////////////////");
     Project test = new Project("TestB");
-    p1.CreateNewTask("transportation",SingletonClock.getInstance());
-    Task transportation = p1.getChildTaskName("transportation");
+    System.out.println("Creating Task Transportation...");
+    test.CreateNewTask("transportation", SingletonClock.getInstance());
+    Task transportation = test.getChildTaskName("transportation");
+    System.out.println("Ok, proceding to start transportation...");
     transportation.start(SingletonClock.getInstance());
+    System.out.println("Start Ok waiting 4 sec...");
     Thread.sleep(4000);
+    System.out.println("Stoping transportation...");
     transportation.stop(SingletonClock.getInstance());
-
-
+    System.out.println("Stop ok, printing task:");
+    transportation.displayTask();
+    Thread.sleep(2000);
+    System.out.println("Creating Task FirstList...");
+    test.CreateNewTask("first list", SingletonClock.getInstance());
+    Task firstlist = test.getChildTaskName("first list");
+    System.out.println("Ok, proceding to start FirstList...");
+    firstlist.start(SingletonClock.getInstance());
+    System.out.println("Start Ok waiting 6 sec...");
+    Thread.sleep(6000);
+    System.out.println("Creating Task SecondList...");
+    test.CreateNewTask("second list", SingletonClock.getInstance());
+    Task secondlist = test.getChildTaskName("second list");
+    System.out.println("Ok, proceding to start SecondList...");
+    secondlist.start(SingletonClock.getInstance());
+    System.out.println("Start Ok waiting 4 sec...");
+    Thread.sleep(4000);
+    System.out.println("Stoping FirstList...");
+    firstlist.stop(SingletonClock.getInstance());
+    System.out.println("Stop ok, printing task:");
+    firstlist.displayTask();
+    Thread.sleep(2000);
+    System.out.println("Stoping SecondList...");
+    secondlist.stop(SingletonClock.getInstance());
+    System.out.println("Stop ok, printing task:");
+    secondlist.displayTask();
+    Thread.sleep(2000);
+    System.out.println("Proceding to start transportation again...");
+    transportation.start(SingletonClock.getInstance());
+    System.out.println("Start Ok waiting 4 sec...");
+    Thread.sleep(4000);
+    System.out.println("Stoping transportation...");
+    transportation.stop(SingletonClock.getInstance());
+    System.out.println("Stop ok, printing task:");
+    transportation.displayTask();
   }
 
 }
