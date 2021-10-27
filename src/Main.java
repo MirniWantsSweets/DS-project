@@ -1,17 +1,16 @@
-port java.time.LocalDateTime;
+import java.time.LocalDateTime;
 
 public class main {
 
   public static void main(String[] args) throws InterruptedException {
 
-    SingletonClock clock = new SingletonClock(); //creamos un nuevo reloj
+        SingletonClock clock = new SingletonClock(); //creamos un nuevo reloj
 
     clock.start(); //iniciamos el reloj
     Thread.sleep(1000); //lo paramos 1 segundo
 
     Project p1 = new Project("raiz"); //creamos nuevo proyecto 
 
-    System.out.println("breakpoint 1"); //imprime un mensaje
 
     p1.CreateNewTask("Tasca1nivel1",clock); //creamos una nueva tasca partir del proyecto
 
@@ -27,7 +26,7 @@ public class main {
     taux.displayTask(); //muestra nombre, fecha en que se creó la tarea, tiempo total de la tarea y fechas de inicio y finalizacion de los intervalos
     aux.CreateNewTask("Tasca1nivel2",clock); //creamos una nueva tasca
     aux.CreateNewTask("Tasca2nivel2",clock); //creamos una nueva tasca
-
+    p1.displayProject();
   }
 
 }
