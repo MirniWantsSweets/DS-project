@@ -15,7 +15,7 @@ class SingletonClock extends Observable {
     {
       public void run()
       {
-        System.out.println("Task Timer on Fixed Rate");
+        
         notifyObservers();
 
       }
