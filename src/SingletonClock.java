@@ -25,7 +25,7 @@ class SingletonClock extends Observable {
 
 
 
-    clock.scheduleAtFixedRate(timerTask, 0, 1000);
+    clock.scheduleAtFixedRate(timerTask, 0, 200);
   }
 
 }
