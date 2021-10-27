@@ -1,0 +1,72 @@
+@startuml
+
+
+abstract class Node{
+#String name
+-Time startTime
+-Time endTime
+-Date startDate
+-Date endDate
+-Double workingTime
+#Project padre
+#float calculateTotalTime()
+}
+class Observable{
+-List<Observer> Observers
++void addObserver(Observer observer)
++void deleteObserver (Observer observer)
++void notifyObservers()
+}
+interface Observer{
++void update()
+}
+class Project{
+-double TotalTime
+-int Num_Childs_Task
+-int
+-List<Task> ChildsTask
+-List<Project> ChildsProject
++float calculateTotalTime()
++void CreateNewTask(String name,Observable reloj)
++void CreateNewSubProject(String name)
++void DeleteTask(Node node)
++void DeleteProyecto(Project proyecto)
++Project(String name)
++void displayProject()
+}
+class SingletonClock{
+-Timer clock
+-SingletonClock instance
++void start()
+}
+class Task{
+-double totalTime
+-int ticks
+-boolean active
+-boolean done
+-LocalDateTime start_date
+-List<TimeInterval> timeIntervals
+-boolean started
++float calculateTotalTime()
++void start(SingletonClock clock)
++void stop(SingletonClock clock)
++void changename(String newname)
++void update()
++void displayTask()
+}
+class TimeInterval{
+-LocalDateTime startTime
+-LocalDateTime endTime
+}
+
+Project  "0..*"--|> "0..*"Node
+Task "0..*"---|> "1" Node
+Task ..|> Observer
+Node --> Project
+Node --> "0..*"Task
+Client "1"--o "0..*"Project
+SingletonClock  --|> Observable
+TimeInterval "0..*" <-- Task
+Observable --> "0..*"Observer
+
+@enduml
