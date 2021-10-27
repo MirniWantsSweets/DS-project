@@ -110,3 +110,9 @@ public class main {
   }
 
 }
+
+// Hemos realizado las siguientes modificaciones al proyecto: 
+//   Reloj se ha modificado para que siga el patron singleton
+//   La clase task ahora tiene 1 lista en vez de dos
+//   Hemos implementado el test que se pedia (TestB)
+//   Hemos actualizado el diagrama UML
