@@ -9,8 +9,7 @@ public class Task extends Node implements Observer{
   boolean active;
   boolean done; //Cuando done = True, tarea done.
   LocalDateTime start_date;
-  List<LocalDateTime> Start_time;
-  List<LocalDateTime> End_time;
+  List<TimeInterval> timeIntervals;
   boolean started; //True = Activada por primera vez en algún momento
 
 
@@ -22,8 +21,7 @@ public class Task extends Node implements Observer{
     totalTime = 0.0;
     done = false;
     started = false;
-    Start_time= new ArrayList();
-    End_time = new ArrayList();
+    timeIntervals = new ArrayList<TimeInterval>();
 
   }
   @Override
@@ -39,13 +37,13 @@ public class Task extends Node implements Observer{
   public void start(SingletonClock clock){ //Inidica inicio de intervalo de trabajo
 
     active = true;
-    Start_time.add(clock.localtime());
+    timeIntervals.add(new TimeInterval(clock));
 
   }
   public void stop(SingletonClock clock){ //Inidica finalizacion de intervalo de trabajo
 
     active = false;
-    End_time.add(clock.localtime());
+    (timeIntervals.get(timeIntervals.size()-1)).endInterval(clock);
   }
   public void setDone(){ // Indica la finalizacion de la tarea
     done= true;
@@ -70,14 +68,14 @@ public class Task extends Node implements Observer{
     System.out.println("**********");
     System.out.println("Task: " + name + " total time = " + calculateTotalTime());
 
-    if(started) System.out.println("Task Started: " + Start_time.get(0).getMonth() + "/" + Start_time.get(0).getDayOfMonth() + "/" + Start_time.get(0).getYear());
+    if(started) System.out.println("Task Started: " + timeIntervals.get(0).getStartTime().getMonth() + "/" + timeIntervals.get(0).getStartTime().getDayOfMonth() + "/" + timeIntervals.get(0).getStartTime().getYear());
 
-    for(int i=0; i < End_time.size(); i++)
+    for(int i=0; i < timeIntervals.size(); i++)
     {
       if(i == 0) { System.out.println("TIME INTERVALS: ");}
       System.out.println("Interval " + (i+1) + ": ");
-      System.out.println("From: " + Start_time.get(i).getMonth() + "/" + Start_time.get(i).getDayOfMonth() + "/" + Start_time.get(i).getYear() + "   " +  Start_time.get(i).getHour() + ":" + Start_time.get(i).getMinute() + ":" + Start_time.get(i).getSecond() );
-      System.out.println("To: " + End_time.get(i).getMonth() + "/" + End_time.get(i).getDayOfMonth() + "/" + End_time.get(i).getYear() + "   " +  End_time.get(i).getHour() + ":" + End_time.get(i).getMinute() + ":" + End_time.get(i).getSecond());
+      System.out.println("From: " + timeIntervals.get(i).getStartTime().getMonth() + "/" + timeIntervals.get(i).getStartTime().getDayOfMonth() + "/" + timeIntervals.get(i).getStartTime().getYear() + "   " +  timeIntervals.get(i).getStartTime().getHour() + ":" + timeIntervals.get(i).getStartTime().getMinute() + ":" + timeIntervals.get(i).getStartTime().getSecond() );
+      System.out.println("To: " + timeIntervals.get(i).getEndTime().getMonth() + "/" + timeIntervals.get(i).getEndTime().getDayOfMonth() + "/" + timeIntervals.get(i).getEndTime().getYear() + "   " +  timeIntervals.get(i).getEndTime().getHour() + ":" + timeIntervals.get(i).getEndTime().getMinute() + ":" + timeIntervals.get(i).getEndTime().getSecond());
     }
     System.out.println("**********");
   }

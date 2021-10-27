@@ -3,14 +3,18 @@ import java.time.format.DateTimeFormatter;
 import java.util.Timer;
 import java.util.TimerTask;
 class SingletonClock extends Observable {
-  Timer clock;
-  public SingletonClock() {
+  private Timer clock = null;
+  private static SingletonClock instance = null;
+
+  private SingletonClock() {
     clock = new Timer();
   }
   LocalDateTime localtime(){ //Retorna fecha actual
     return LocalDateTime.now();
   }
-  public void start(){ //Inicia conteo del timer
+  public static void start(){ //Inicia conteo del timer
+    if (instance == null) instance = new SingletonClock();
+
     TimerTask timerTask = new TimerTask()
     {
       public void run()
@@ -20,12 +24,15 @@ class SingletonClock extends Observable {
 
       }
     };
+    instance.getClock().scheduleAtFixedRate(timerTask, 0, 200);
+  }
 
+  public static SingletonClock getInstance() {
+    return instance;
+  }
 
-
-
-
-    clock.scheduleAtFixedRate(timerTask, 0, 200);
+  public Timer getClock() {
+    return clock;
   }
 
 }

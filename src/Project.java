@@ -6,7 +6,7 @@ public class Project extends Node{
   double TotalTime;
   int Num_Childs_Task;
   int Num_Childs_Project;
-  
+
 
   List<Task> ChildsTask= new ArrayList();
   List<Project> ChildsProject= new ArrayList();
@@ -23,12 +23,12 @@ public class Project extends Node{
 
   Task getChildTaskName(String nombre){ //Retorna tarea hija en funcion del nombre
 
-      for (Task x:ChildsTask){
-        if (x.getName()== nombre){
-          return x;
-        }
+    for (Task x:ChildsTask){
+      if (x.getName()== nombre){
+        return x;
       }
-      return null;
+    }
+    return null;
 
   }
   Project getChildProjectName(String nombre){ //Retorna proyecto hijo en funcion del nombre
@@ -65,15 +65,14 @@ public class Project extends Node{
     Num_Childs_Project -= 1;
   }
 
-  public Project(String nombre){
+  public Project(String name){
     this.TotalTime=0;
     this.Num_Childs_Task=0;
     this.Num_Childs_Project=0;
-    this.name= nombre;
+    this.name= name;
 
   }
-  
-  void displayProject()
+  void displayProject() //muestra informacion sobre los parametros del proyecto
   {
     System.out.println("**********");
     System.out.print("Project: " + getName());
@@ -83,8 +82,9 @@ public class Project extends Node{
     {
       totalTime = totalTime + ChildsTask.get(i).calculateTotalTime();
     }
-    if(!ChildsTask.isEmpty()) {System.out.println('\n' + "Tasks total time: " + TotalTime);}
 
+    if(!ChildsTask.isEmpty()) {System.out.println('\n' + "Tasks total time: " + totalTime);}
+    TotalTime = totalTime;
     totalTime = 0;
 
     for(int i = 0; i < Num_Childs_Project; i++)
@@ -94,12 +94,15 @@ public class Project extends Node{
         totalTime = totalTime + ChildsProject.get(i).ChildsTask.get(n).calculateTotalTime();
       }
     }
-    if(!ChildsProject.isEmpty()) {System.out.println("SubProjects total time: " + TotalTime);}
+    if(!ChildsProject.isEmpty()) {System.out.println("SubProjects total time: " + totalTime);}
+    TotalTime = TotalTime + totalTime;
     System.out.println("**********");
   }
-  
+
+
   @Override
   public Project getInstance(){
     return this;
   }
 }
+

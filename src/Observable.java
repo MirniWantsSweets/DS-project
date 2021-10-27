@@ -3,7 +3,7 @@ import java.util.List;
 import java.util.Iterator;
 
 public class Observable{
-  List<Observer> Observers= new ArrayList(); //Lista de observadores que serán notificados por el Observable
+  private static List<Observer> Observers= new ArrayList(); //Lista de observadores que serán notificados por el Observable
   public void addObserver (Observer observer){ //Añadir observador a la lista de observadores
 
     Observers.add(observer);
@@ -15,7 +15,7 @@ public class Observable{
 
   };
   public void setChanged(){}; //**//
-  public void notifyObservers(){ // Notifica a TODOS los observadores con el nuevo estado del observable
+  public static void notifyObservers(){ // Notifica a TODOS los observadores con el nuevo estado del observable
 
 
     for (int i=0;i<Observers.size(); i+=1){
