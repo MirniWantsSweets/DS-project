@@ -1,108 +1,111 @@
 import java.util.ArrayList;
 import java.util.List;
 
-public class Project extends Node{
+public class Project extends Node {
 
-  double TotalTime;
-  int Num_Childs_Task;
-  int Num_Childs_Project;
+  double totalTime;
+  int numChildsTask;
+  int numChildsProject;
+
+  List<Task> childsTask = new ArrayList();
+  List<Project> childsProject = new ArrayList();
+
+  public Project(String name) {
+    this.totalTime = 0;
+    this.numChildsTask = 0;
+    this.numChildsProject = 0;
+    this.name = name;
+  }
+
+  Node getPadre() {
+    return padre;
+  }
 
 
-  List<Task> ChildsTask= new ArrayList();
-  List<Project> ChildsProject= new ArrayList();
+  Task getChildTaskByName(String nombre) {
+    for (Task x : childsTask) {
+      if (x.getName() == nombre) {
+        return x;
+      }
+    }
+    return null;
+
+  }
+
+  Project getChildProjectByName(String nombre) {
+
+    for (Project x : childsProject) {
+      if (x.getName() == nombre) {
+        return x;
+      }
+    }
+    return null;
+
+  }
+
+  void createNewTask(String name, Observable reloj) {
+    Task task = new Task(name);
+    childsTask.add(task);
+    task.padre = this;
+    numChildsTask += 1;
+    reloj.addObserver(task);
+  }
+
+  void createNewSubProject(String name) {
+    Project project = new Project(name);
+    project.padre = this;
+    childsProject.add(project);
+    numChildsProject += 1;
+  }
+
+  void deleteTask(Node node) {
+
+    childsTask.remove(childsTask.indexOf(node));
+    numChildsTask -= 1;
+  }
+
+  void deleteProyecto(Project proyecto) {
+
+    childsProject.remove(childsProject.indexOf(proyecto));
+    numChildsProject -= 1;
+  }
+
+  //muestra informacion sobre los parametros del proyecto
+  void displayProject() {
+    System.out.println("**********");
+    System.out.print("Project: " + getName());
+    float totalTime = 0;
+    if (childsTask.isEmpty()) {
+      System.out.println("This Project doesn't have any started task yet");
+    }
+    for (int i = 0; i < numChildsTask; i++) {
+      totalTime = totalTime + childsTask.get(i).calculateTotalTime();
+    }
+
+    if (!childsTask.isEmpty()) {
+      System.out.println('\n' + "Tasks total time: " + totalTime);
+    }
+    this.totalTime = totalTime;
+    totalTime = 0;
+
+    for (int i = 0; i < numChildsProject; i++) {
+      for (int n = 0; n < childsProject.get(i).numChildsTask; n++) {
+        totalTime = totalTime + childsProject.get(i).childsTask.get(n).calculateTotalTime();
+      }
+    }
+    if (!childsProject.isEmpty()) {
+      System.out.println("SubProjects total time: " + totalTime);
+    }
+    this.totalTime = this.totalTime + totalTime;
+    System.out.println("**********");
+  }
 
   float calculateTotalTime() {
     return 0;
   }
 
-  Node getPadre(){ //Retorna el padre
-    return padre;
-  }
-
-
-
-  Task getChildTaskName(String nombre){ //Retorna tarea hija en funcion del nombre
-
-    for (Task x:ChildsTask){
-      if (x.getName()== nombre){
-        return x;
-      }
-    }
-    return null;
-
-  }
-  Project getChildProjectName(String nombre){ //Retorna proyecto hijo en funcion del nombre
-
-    for (Project x:ChildsProject){
-      if (x.getName()== nombre){
-        return x;
-      }
-    }
-    return null;
-
-  }
-  void CreateNewTask(String name,Observable reloj) { //Crea nueva tarea hija
-    Task task=new Task(name);
-    ChildsTask.add(task);
-    task.padre=this;
-    Num_Childs_Task += 1;
-    reloj.addObserver(task);
-  }
-  void CreateNewSubProject(String name) { //Crea nuevo proyecto hijo
-    Project project=new Project(name);
-    project.padre=this;
-    ChildsProject.add(project);
-    Num_Childs_Project += 1;
-  }
-  void DeleteTask(Node node){ //Elimina una tarea hija
-
-    ChildsTask.remove(ChildsTask.indexOf(node));
-    Num_Childs_Task -= 1;
-  }
-  void DeleteProyecto(Project proyecto){ //Elimina un proyecto hijo
-
-    ChildsProject.remove(ChildsProject.indexOf(proyecto));
-    Num_Childs_Project -= 1;
-  }
-
-  public Project(String name){
-    this.TotalTime=0;
-    this.Num_Childs_Task=0;
-    this.Num_Childs_Project=0;
-    this.name= name;
-
-  }
-  void displayProject() //muestra informacion sobre los parametros del proyecto
-  {
-    System.out.println("**********");
-    System.out.print("Project: " + getName());
-    float totalTime = 0;
-    if(ChildsTask.isEmpty()){System.out.println("This Project doesn't have any started task yet");}
-    for(int i = 0; i < Num_Childs_Task; i++)
-    {
-      totalTime = totalTime + ChildsTask.get(i).calculateTotalTime();
-    }
-
-    if(!ChildsTask.isEmpty()) {System.out.println('\n' + "Tasks total time: " + totalTime);}
-    TotalTime = totalTime;
-    totalTime = 0;
-
-    for(int i = 0; i < Num_Childs_Project; i++)
-    {
-      for(int n = 0; n < ChildsProject.get(i).Num_Childs_Task; n++)
-      {
-        totalTime = totalTime + ChildsProject.get(i).ChildsTask.get(n).calculateTotalTime();
-      }
-    }
-    if(!ChildsProject.isEmpty()) {System.out.println("SubProjects total time: " + totalTime);}
-    TotalTime = TotalTime + totalTime;
-    System.out.println("**********");
-  }
-
-
   @Override
-  public Project getInstance(){
+  public Project getInstance() {
     return this;
   }
 }
-

@@ -1,13 +1,7 @@
 import java.sql.Date;
 import java.sql.Time;
+
 public abstract class Node {
-  //-nombre : string
-  //-startTime : time
-  //-startDate : date
-  // -endTime : time
-  // -endDate : date
-  // -workingTime : double
-  // +calculateTotalTime()*
   protected String name;
   private Time startTime;
   private Time endTime;
@@ -17,11 +11,14 @@ public abstract class Node {
   protected Project padre;
 
   public String getName() {
-    return name; //devuelve el nombre
+    return name;
   }
 
+  //devuelva la tasca/proyecto
+  abstract Node getInstance();
 
-  abstract Node getInstance(); //devuelva la tasca/proyecto
-  abstract float calculateTotalTime(); //convierto los ticks en segundos
+  //convierto los ticks en segundos
+  abstract float calculateTotalTime();
 }
+
 

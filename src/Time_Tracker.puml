@@ -11,8 +11,9 @@ abstract class Node{
 #Project padre
 #float calculateTotalTime()
 }
+
 class Observable{
--List<Observer> Observers
+-List<Observer> observers
 +void addObserver(Observer observer)
 +void deleteObserver (Observer observer)
 +void notifyObservers()
@@ -21,30 +22,30 @@ interface Observer{
 +void update()
 }
 class Project{
--double TotalTime
--int Num_Childs_Task
--int
--List<Task> ChildsTask
--List<Project> ChildsProject
+-double totalTime
+-int numChildsTask
+-int numChildsProject
+-List<Task> childsTask
+-List<Project> childsProject
 +float calculateTotalTime()
-+void CreateNewTask(String name,Observable reloj)
-+void CreateNewSubProject(String name)
-+void DeleteTask(Node node)
-+void DeleteProyecto(Project proyecto)
-+Project(String name)
++void createNewTask(String name,Observable reloj)
++void createNewSubProject(String name)
++void deleteTask(Node node)
++void deleteProyecto(Project proyecto)
 +void displayProject()
++getInstance()
 }
 class SingletonClock{
 -Timer clock
 -SingletonClock instance
-+void start()
++void startTimer()
 }
 class Task{
 -double totalTime
 -int ticks
 -boolean active
 -boolean done
--LocalDateTime start_date
+-LocalDateTime startDate
 -List<TimeInterval> timeIntervals
 -boolean started
 +float calculateTotalTime()
