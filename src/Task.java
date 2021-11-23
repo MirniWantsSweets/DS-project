@@ -21,7 +21,7 @@ public class Task extends Node implements Observer {
     done = false;
     started = false;
     timeIntervals = new ArrayList<TimeInterval>();
-
+    father = null;
   }
 
   // Retorna un objeto de la clase Task
@@ -104,5 +104,4 @@ public class Task extends Node implements Observer {
     System.out.println("**********");
   }
 }
-
 

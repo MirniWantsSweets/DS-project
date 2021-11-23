@@ -15,11 +15,10 @@ public class Project extends Node {
     this.numChildsTask = 0;
     this.numChildsProject = 0;
     this.name = name;
+    this.father = null;
   }
 
-  Node getPadre() {
-    return padre;
-  }
+
 
 
   Task getChildTaskByName(String nombre) {
@@ -46,14 +45,14 @@ public class Project extends Node {
   void createNewTask(String name, Observable reloj) {
     Task task = new Task(name);
     childsTask.add(task);
-    task.padre = this;
+    task.father = this;
     numChildsTask += 1;
     reloj.addObserver(task);
   }
 
   void createNewSubProject(String name) {
     Project project = new Project(name);
-    project.padre = this;
+    project.father = this;
     childsProject.add(project);
     numChildsProject += 1;
   }
@@ -109,3 +108,4 @@ public class Project extends Node {
     return this;
   }
 }
+

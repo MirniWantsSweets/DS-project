@@ -1,6 +1,14 @@
 @startuml
 
+interface Iterator{
++Project root()
++Node next()
++bool isNext()
 
+}
+class NodeIterator{
+
+}
 abstract class Node{
 #String name
 -Time startTime
@@ -8,8 +16,10 @@ abstract class Node{
 -Date startDate
 -Date endDate
 -Double workingTime
++createIterator
 #Project padre
 #float calculateTotalTime()
+
 }
 
 class Observable{

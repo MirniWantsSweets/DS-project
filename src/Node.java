@@ -8,10 +8,14 @@ public abstract class Node {
   private Date startDate;
   private Date endDate;
   private Double workingTime;
-  protected Project padre;
+  protected Project father;
 
   public String getName() {
     return name;
+  }
+
+  public Project getFather() {
+    return father;
   }
 
   //devuelva la tasca/proyecto
@@ -19,6 +23,9 @@ public abstract class Node {
 
   //convierto los ticks en segundos
   abstract float calculateTotalTime();
+
+  // TODO : abstact Iterator
 }
+
 
 
