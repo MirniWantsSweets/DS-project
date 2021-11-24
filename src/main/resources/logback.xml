@@ -14,13 +14,22 @@
     <file>log.html</file>
     </appender>
 
-    <logger name="TimeTracker.MainFita1" level="info"/>
-    <logger name="TimeTracker.MainFita2" level="info"/>
-    <logger name="TimeTracker.Project" level="info"/>
-    <logger name="TimeTracker.Task" level="info"/>
-
-    <root level="warn">
+    <logger name="TimeTracker.MainFita1">
         <appender-ref ref="STDOUT" />
         <appender-ref ref="HTML" />
-    </root>
+    </logger>
+    <logger name="TimeTracker.MainFita2">
+        <appender-ref ref="STDOUT" />
+        <appender-ref ref="HTML" />
+    </logger>
+    <logger name="TimeTracker.Project">
+        <appender-ref ref="STDOUT" />
+        <appender-ref ref="HTML" />
+    </logger>
+    <logger name="TimeTracker.Task">
+        <appender-ref ref="STDOUT" />
+        <appender-ref ref="HTML" />
+    </logger>
+
+    <root level="info"></root>
 </configuration>
