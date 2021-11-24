@@ -1,14 +1,21 @@
 @startuml
 
-interface Iterator{
-+Project root()
-+Node next()
-+bool isNext()
+class Iterator{
+-Project project
+-Task task
+-List<task> taskList
+-List<Project> projectList
+-Project root
 
++Iterator(Task node)
++Iterator(Project node)
++void root()
++void dfs(Project projectForSearch)
++void next()
++Boolean hasNext()
 }
-class NodeIterator{
 
-}
+
 abstract class Node{
 #String name
 -Time startTime
@@ -17,7 +24,7 @@ abstract class Node{
 -Date endDate
 -Double workingTime
 +createIterator
-#Project padre
+#Project father
 #float calculateTotalTime()
 
 }
@@ -28,22 +35,27 @@ class Observable{
 +void deleteObserver (Observer observer)
 +void notifyObservers()
 }
+
 interface Observer{
 +void update()
 }
+
 class Project{
 -double totalTime
 -int numChildsTask
 -int numChildsProject
 -List<Task> childsTask
 -List<Project> childsProject
+
++Task getChildTaskByName(String name)
++Project getChildProjectByName(String nombre)
 +float calculateTotalTime()
 +void createNewTask(String name,Observable reloj)
 +void createNewSubProject(String name)
 +void deleteTask(Node node)
 +void deleteProyecto(Project proyecto)
 +void displayProject()
-+getInstance()
++Project getInstance()
 }
 class SingletonClock{
 -Timer clock
@@ -58,6 +70,8 @@ class Task{
 -LocalDateTime startDate
 -List<TimeInterval> timeIntervals
 -boolean started
+
++void setDone()
 +float calculateTotalTime()
 +void start(SingletonClock clock)
 +void stop(SingletonClock clock)
@@ -68,6 +82,8 @@ class Task{
 class TimeInterval{
 -LocalDateTime startTime
 -LocalDateTime endTime
++TimeInterval(SingletonClock clock)
++void endInterval(SingletonClock clock)
 }
 
 Project  "0..*"--|> "0..*"Node
@@ -80,4 +96,7 @@ SingletonClock "1" --|> "1"Observable
 TimeInterval "0..*" <-- Task
 Observable --> "0..*"Observer
 SingletonClock --* SingletonClock
+Iterator --> "0..*" Project
+Iterator --> "0..*" Task
+
 @enduml
