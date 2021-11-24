@@ -1,8 +1,8 @@
+import java.util.ArrayList;
+import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.ArrayList;
-import java.util.List;
 
 public class Project extends Node {
 
@@ -21,12 +21,10 @@ public class Project extends Node {
     this.name = name;
     this.father = null;
     tags = new ArrayList();
-    for(int i = 0; i < tag.size(); i++)
+    for (int i = 0; i < tag.size(); i++) {
       tags.add(tag.get(i));
+    }
   }
-
-
-
 
   Task getChildTaskByName(String nombre) {
     for (Task x : childsTask) {
@@ -49,8 +47,8 @@ public class Project extends Node {
 
   }
 
-  void createNewTask(String name,List<String> tag, Observable reloj) {
-    Task task = new Task(name,tag);
+  void createNewTask(String name, List<String> tag, Observable reloj) {
+    Task task = new Task(name, tag);
     childsTask.add(task);
     task.father = this;
     numChildsTask += 1;
@@ -58,7 +56,7 @@ public class Project extends Node {
   }
 
   void createNewSubProject(String name, List<String> tag) {
-    Project project = new Project(name,tag);
+    Project project = new Project(name, tag);
     project.father = this;
     childsProject.add(project);
     numChildsProject += 1;

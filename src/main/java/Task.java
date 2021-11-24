@@ -26,8 +26,9 @@ public class Task extends Node implements Observer {
     timeIntervals = new ArrayList<TimeInterval>();
     father = null;
     tags = new ArrayList();
-    for(int i = 0; i < tag.size(); i++)
+    for (int i = 0; i < tag.size(); i++) {
       tags.add(tag.get(i));
+    }
   }
 
   // Retorna un objeto de la clase Task

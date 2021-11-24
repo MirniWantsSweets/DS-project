@@ -1,8 +1,9 @@
+import java.util.ArrayList;
+import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.ArrayList;
-import java.util.List;
+
 
 public class Iterator {
 
@@ -136,7 +137,7 @@ public class Iterator {
 
     for (int i = 0; i < projectList.size(); i++) {
       for (int j = 0; j < projectList.get(i).tags.size(); j++) {
-        if(projectList.get(i).tags.get(j) == tag) {
+        if (projectList.get(i).tags.get(j) == tag) {
           projectList.get(i).displayProject();
         }
       }
@@ -144,7 +145,7 @@ public class Iterator {
 
     for (int i = 0; i < taskList.size(); i++) {
       for (int j = 0; j < taskList.get(i).tags.size(); j++) {
-        if(taskList.get(i).tags.get(j) == tag) {
+        if (taskList.get(i).tags.get(j) == tag) {
           taskList.get(i).displayTask();
         }
       }
