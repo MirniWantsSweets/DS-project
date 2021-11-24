@@ -1,3 +1,6 @@
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -10,6 +13,7 @@ public class Task extends Node implements Observer {
   LocalDateTime startDate;
   List<TimeInterval> timeIntervals;
   boolean started; //True = Activada por primera vez en algún momento
+  Logger logger = LoggerFactory.getLogger("TimeTracker.Task");
 
 
 

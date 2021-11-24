@@ -1,8 +1,13 @@
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.util.ArrayList;
 import java.util.List;
 
 
 public class Observable {
+
+  Logger logger = LoggerFactory.getLogger("TimeTracker.Observable");
 
   //Lista de observadores que serán notificados por el Observable
   private static List<Observer> observers = new ArrayList();

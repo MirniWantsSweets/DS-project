@@ -1,3 +1,6 @@
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -6,6 +9,7 @@ public class Project extends Node {
   double totalTime;
   int numChildsTask;
   int numChildsProject;
+  Logger logger = LoggerFactory.getLogger("TimeTracker.Project");
 
   List<Task> childsTask = new ArrayList();
   List<Project> childsProject = new ArrayList();

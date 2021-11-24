@@ -1,7 +1,13 @@
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.sql.Date;
 import java.sql.Time;
 
 public abstract class Node {
+
+  Logger logger = LoggerFactory.getLogger("TimeTracker.Node");
+
   protected String name;
   private Time startTime;
   private Time endTime;

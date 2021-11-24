@@ -1,5 +1,8 @@
 import java.util.ArrayList;
 import java.util.List;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 
 public class Iterator {
 
@@ -8,6 +11,7 @@ public class Iterator {
   List<Task> taskList;
   List<Project> projectList;
   Project root;
+  Logger logger = LoggerFactory.getLogger("TimeTracker.Iterator");
 
   public Iterator(Task node) {
     task = node;
