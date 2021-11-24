@@ -1,8 +1,8 @@
-import java.util.ArrayList;
-import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.ArrayList;
+import java.util.List;
 
 public class Iterator {
 
@@ -33,7 +33,6 @@ public class Iterator {
 
   }
 
- // guarda raiz del arbol
   void root() {
 
     if (project != null) {
@@ -48,7 +47,6 @@ public class Iterator {
 
   }
 
- //Mediante el algoritmo dfs recorre todo el arbol y guarda sus elementos de forma ordenada
   void dfs(Project projectForSearch) {
 
     for (int j = 0; j < projectForSearch.numChildsTask; j++) {
@@ -128,4 +126,34 @@ public class Iterator {
     return hasNext;
   }
 
+
+  void searchTaskByTag(String tag) {
+
+    if (projectList.isEmpty()) {
+      projectList.add(root);
+      dfs(root);
+    }
+
+    for (int i = 0; i < projectList.size(); i++) {
+      for (int j = 0; j < projectList.get(i).tags.size(); j++) {
+        if(projectList.get(i).tags.get(j) == tag) {
+          projectList.get(i).displayProject();
+        }
+      }
+    }
+
+    for (int i = 0; i < taskList.size(); i++) {
+      for (int j = 0; j < taskList.get(i).tags.size(); j++) {
+        if(taskList.get(i).tags.get(j) == tag) {
+          taskList.get(i).displayTask();
+        }
+      }
+    }
+
+
+  }
+
+
 }
+
+

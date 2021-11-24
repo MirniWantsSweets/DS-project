@@ -1,117 +1,113 @@
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class Main{
+import java.util.ArrayList;
+import java.util.List;
 
-  public static void main(String[] args) throws InterruptedException {
+public class Main {
+  // public static void TestFita1(org.slf4j.Logger logger) throws InterruptedException {
+  //   //Test B parecido al anterior en el que creamos arbol, mediante start y stop
+  //   //creamos intervalos para las tascas y comprovamos que los tiempos de estas
+  //   //sean correctos
+  //   logger.info("/////////////////////////TEST FITA 1/////////////////////////////////////");
+  //   Project test = new Project("TestB");
+  //   logger.info("Creating Task Transportation...");
+  //   test.createNewTask("transportation", SingletonClock.getInstance());
+  //   Task transportation = test.getChildTaskByName("transportation");
+  //   logger.info("Ok, proceding to start transportation...");
+  //   transportation.start(SingletonClock.getInstance());
+  //   logger.info("Start Ok waiting 4 sec...");
+  //   Thread.sleep(4000);
+  //   logger.info("Stoping transportation...");
+  //   transportation.stop(SingletonClock.getInstance());
+  //   logger.info("Stop ok, printing task:");
+  //   transportation.displayTask();
+  //   Thread.sleep(2000);
+  //   logger.info("Creating Task FirstList...");
+  //   test.createNewTask("first list", SingletonClock.getInstance());
+  //   Task firstlist = test.getChildTaskByName("first list");
+  //   logger.info("Ok, proceding to start FirstList...");
+  //   firstlist.start(SingletonClock.getInstance());
+  //   logger.info("Start Ok waiting 6 sec...");
+  //   Thread.sleep(6000);
+  //   logger.info("Creating Task SecondList...");
+  //   test.createNewTask("second list", SingletonClock.getInstance());
+  //   Task secondlist = test.getChildTaskByName("second list");
+  //   logger.info("Ok, proceding to start SecondList...");
+  //   secondlist.start(SingletonClock.getInstance());
+  //   logger.info("Start Ok waiting 4 sec...");
+  //   Thread.sleep(4000);
+  //   logger.info("Stoping FirstList...");
+  //   firstlist.stop(SingletonClock.getInstance());
+  //   logger.info("Stop ok, printing task:");
+  //   firstlist.displayTask();
+  //   Thread.sleep(2000);
+  //   logger.info("Stoping SecondList...");
+  //   secondlist.stop(SingletonClock.getInstance());
+  //   logger.info("Stop ok, printing task:");
+  //   secondlist.displayTask();
+  //   Thread.sleep(2000);
+  //   logger.info("Proceding to start transportation again...");
+  //   transportation.start(SingletonClock.getInstance());
+  //   logger.info("Start Ok waiting 4 sec...");
+  //   Thread.sleep(4000);
+  //   logger.info("Stoping transportation...");
+  //   transportation.stop(SingletonClock.getInstance());
+  //   logger.info("Stop ok, printing task:");
+  //   transportation.displayTask();
+  // }
 
-    Logger logger = LoggerFactory.getLogger("TimeTracker.Main");
+  public static void TestFita2(org.slf4j.Logger logger) throws InterruptedException {
+    logger.info("/////////////////////////TEST FITA 2/////////////////////////////////////");
     SingletonClock.startTimer();
+    List<String> tagsToAdd = new ArrayList();
+    Project root = new Project("root", tagsToAdd);
 
-    //Creamos arbol de proyectos y tareas
-    Project p1 = new Project("raiz");
-    p1.createNewTask("Tasca1nivel1", SingletonClock.getInstance());
-    p1.createNewSubProject("Proyecto1nivel1");
-    p1.createNewSubProject("Proyecto2nivel1");
-    Project paux = p1.getChildProjectByName("Proyecto1nivel1");
-    paux.createNewTask("Tasca1nivel2", SingletonClock.getInstance());
-    paux.createNewTask("Tasca2nivel2", SingletonClock.getInstance());
+    tagsToAdd.add("java");
+    tagsToAdd.add("flutter");
+    root.createNewSubProject("softwareDesign", tagsToAdd);
+    tagsToAdd.clear();
+    tagsToAdd.add("c++");
+    tagsToAdd.add("java");
+    tagsToAdd.add("python");
+    root.createNewSubProject("softwareTesting", tagsToAdd);
+    tagsToAdd.clear();
+    tagsToAdd.add("SQL");
+    tagsToAdd.add("python");
+    tagsToAdd.add("c++");
+    root.createNewSubProject("databases", tagsToAdd);
+    tagsToAdd.clear();
+    root.createNewSubProject("taskTransportation", tagsToAdd);
+    Project swDesign = root.getChildProjectByName("softwareDesign");
+    swDesign.createNewSubProject("problems", tagsToAdd);
+    swDesign.createNewSubProject("projectTimeTracker", tagsToAdd);
+    Project problems = swDesign.getChildProjectByName("problems");
+    tagsToAdd.clear();
+    tagsToAdd.add("java");
+    problems.createNewTask("firstList", tagsToAdd, SingletonClock.getInstance());
+    tagsToAdd.clear();
+    tagsToAdd.add("dart");
+    problems.createNewTask("secondList", tagsToAdd, SingletonClock.getInstance());
 
-    Task taux = p1.getChildTaskByName("Tasca1nivel1");
-    taux.start(SingletonClock.getInstance());
-
-    //Muestra nombre, fecha en que se creó la tarea, tiempo total de la tarea y
-    // fechas de inicio y finalizacion de los intervalos
-    taux.displayTask();
-
-    //A continuacion realizamos varias pruebas de start y stop de tareas y se van llamando
-    // displayTask para ver que los resultados son correctos
-    Thread.sleep(3000);
-    taux.stop(SingletonClock.getInstance());
-    Thread.sleep(1000);
-
-    //Muestra nombre, fecha en que se creó la tarea, tiempo total de la tarea y
-    // fechas de inicio y finalizacion de los intervalos
-    taux.displayTask();
-
-    Task taux2 = paux.getChildTaskByName("Tasca1nivel2");
-    Task taux3 = paux.getChildTaskByName("Tasca2nivel2");
-
-    taux.start(SingletonClock.getInstance());
-    taux2.start(SingletonClock.getInstance());
-    taux3.start(SingletonClock.getInstance());
-
-    Thread.sleep(2000); //lo paramos 2 segundos
-
-    taux.stop(SingletonClock.getInstance());
-    taux2.stop(SingletonClock.getInstance());
-    taux3.stop(SingletonClock.getInstance());
-
-    //Muestra nombre, fecha en que se creó la tarea, tiempo total de la tarea y
-    // fechas de inicio y finalizacion de los intervalos
-    taux.displayTask();
-
-    Thread.sleep(2000);
-
-    //Muestra nombre, fecha en que se creó la tarea, tiempo total de la tarea y
-    // fechas de inicio y finalizacion de los intervalos
-    taux2.displayTask();
-
-    Thread.sleep(2000);
-
-    p1.displayProject();
-    paux.displayProject();
-
-    //Test B parecido al anterior en el que creamos arbol, mediante start y stop
-    //creamos intervalos para las tascas y comprovamos que los tiempos de estas
-    //sean correctos
-    logger.info("/////////////////////////TEST B/////////////////////////////////////");
-    Project test = new Project("TestB");
-    logger.info("Creating Task Transportation...");
-    test.createNewTask("transportation", SingletonClock.getInstance());
-    Task transportation = test.getChildTaskByName("transportation");
-    logger.info("Ok, proceding to start transportation...");
-    transportation.start(SingletonClock.getInstance());
-    logger.info("Start Ok waiting 4 sec...");
-    Thread.sleep(4000);
-    logger.info("Stoping transportation...");
-    transportation.stop(SingletonClock.getInstance());
-    logger.info("Stop ok, printing task:");
-    transportation.displayTask();
-    Thread.sleep(2000);
-    logger.info("Creating Task FirstList...");
-    test.createNewTask("first list", SingletonClock.getInstance());
-    Task firstlist = test.getChildTaskByName("first list");
-    logger.info("Ok, proceding to start FirstList...");
-    firstlist.start(SingletonClock.getInstance());
-    logger.info("Start Ok waiting 6 sec...");
-    Thread.sleep(6000);
-    logger.info("Creating Task SecondList...");
-    test.createNewTask("second list", SingletonClock.getInstance());
-    Task secondlist = test.getChildTaskByName("second list");
-    logger.info("Ok, proceding to start SecondList...");
-    secondlist.start(SingletonClock.getInstance());
-    logger.info("Start Ok waiting 4 sec...");
-    Thread.sleep(4000);
-    logger.info("Stoping FirstList...");
-    firstlist.stop(SingletonClock.getInstance());
-    logger.info("Stop ok, printing task:");
-    firstlist.displayTask();
-    Thread.sleep(2000);
-    logger.info("Stoping SecondList...");
-    secondlist.stop(SingletonClock.getInstance());
-    logger.info("Stop ok, printing task:");
-    secondlist.displayTask();
-    Thread.sleep(2000);
-    logger.info("Proceding to start transportation again...");
-    transportation.start(SingletonClock.getInstance());
-    logger.info("Start Ok waiting 4 sec...");
-    Thread.sleep(4000);
-    logger.info("Stoping transportation...");
-    transportation.stop(SingletonClock.getInstance());
-    logger.info("Stop ok, printing task:");
-    transportation.displayTask();
+    tagsToAdd.clear();
+    tagsToAdd.add("java");
+    tagsToAdd.add("IntelliJ");
+    Project projectTimeTracker = swDesign.getChildProjectByName("projectTimeTracker");
+    projectTimeTracker.createNewTask("firstMileston", tagsToAdd, SingletonClock.getInstance());
+    tagsToAdd.clear();
+    projectTimeTracker.createNewTask("readHandout", tagsToAdd, SingletonClock.getInstance());
+    Iterator it = new Iterator(root);
+    it.searchTaskByTag("java");
   }
 
+  public static void main(String[] args) throws InterruptedException {
+    Logger loggerFita1 = LoggerFactory.getLogger("TimeTracker.MainFita1");
+    Logger loggerFita2 = LoggerFactory.getLogger("TimeTracker.MainFita2");
+    SingletonClock.startTimer();
+    //Fita1
+    //TestFita1(loggerFita1);
+    //Fita2
+    TestFita2(loggerFita2);
+  }
 }
 

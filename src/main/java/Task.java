@@ -1,9 +1,8 @@
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class Task extends Node implements Observer {
   double totalTime;
@@ -13,12 +12,12 @@ public class Task extends Node implements Observer {
   LocalDateTime startDate;
   List<TimeInterval> timeIntervals;
   boolean started; //True = Activada por primera vez en algún momento
+
   Logger logger = LoggerFactory.getLogger("TimeTracker.Task");
 
 
-
   //Inicializador de objeto tarea donde le pasamos un nombre como único parámetro inicial
-  public Task(String n) {
+  public Task(String n, List<String> tag) {
     name = n;
     ticks = 0;
     totalTime = 0.0;
@@ -26,6 +25,9 @@ public class Task extends Node implements Observer {
     started = false;
     timeIntervals = new ArrayList<TimeInterval>();
     father = null;
+    tags = new ArrayList();
+    for(int i = 0; i < tag.size(); i++)
+      tags.add(tag.get(i));
   }
 
   // Retorna un objeto de la clase Task
@@ -103,6 +105,12 @@ public class Task extends Node implements Observer {
                 + ":" + timeIntervals.get(i).getEndTime().getSecond());
       } else {
         logger.info("Task in progress");
+      }
+      if (!tags.isEmpty()) {
+        logger.info("Tags:" + '\n');
+        for (int j = 0; j < tags.size(); j++) {
+          logger.info(" " + tags.get(j));
+        }
       }
     }
     logger.info("**********");

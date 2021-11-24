@@ -16,6 +16,7 @@ abstract class Node{
 -Date startDate
 -Date endDate
 -Double workingTime
+-
 +createIterator
 #Project padre
 #float calculateTotalTime()

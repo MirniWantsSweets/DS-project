@@ -14,12 +14,15 @@ public class Project extends Node {
   List<Task> childsTask = new ArrayList();
   List<Project> childsProject = new ArrayList();
 
-  public Project(String name) {
+  public Project(String name, List<String> tag) {
     this.totalTime = 0;
     this.numChildsTask = 0;
     this.numChildsProject = 0;
     this.name = name;
     this.father = null;
+    tags = new ArrayList();
+    for(int i = 0; i < tag.size(); i++)
+      tags.add(tag.get(i));
   }
 
 
@@ -46,19 +49,21 @@ public class Project extends Node {
 
   }
 
-  void createNewTask(String name, Observable reloj) {
-    Task task = new Task(name);
+  void createNewTask(String name,List<String> tag, Observable reloj) {
+    Task task = new Task(name,tag);
     childsTask.add(task);
     task.father = this;
     numChildsTask += 1;
     reloj.addObserver(task);
   }
 
-  void createNewSubProject(String name) {
-    Project project = new Project(name);
+  void createNewSubProject(String name, List<String> tag) {
+    Project project = new Project(name,tag);
     project.father = this;
     childsProject.add(project);
     numChildsProject += 1;
+
+
   }
 
   void deleteTask(Node node) {
@@ -99,6 +104,14 @@ public class Project extends Node {
     if (!childsProject.isEmpty()) {
       logger.info("SubProjects total time: " + totalTime);
     }
+
+    if (!tags.isEmpty()) {
+      logger.info("Tags:" + '\n');
+      for (int i = 0; i < tags.size(); i++) {
+        logger.info(" " + tags.get(i));
+      }
+    }
+
     this.totalTime = this.totalTime + totalTime;
     logger.info("**********");
   }

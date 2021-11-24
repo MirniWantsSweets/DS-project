@@ -1,13 +1,13 @@
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import java.time.LocalDateTime;
 import java.util.Timer;
 import java.util.TimerTask;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 class SingletonClock extends Observable {
   private Timer clock = null;
   private static SingletonClock instance = null;
+
   Logger logger = LoggerFactory.getLogger("TimeTracker.SingletonClock");
 
   //Constructor privado para usar patron Singleton
