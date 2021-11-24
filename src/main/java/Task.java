@@ -76,36 +76,36 @@ public class Task extends Node implements Observer {
   //fechas de inicio y finalizacion de los intervalos
   @SuppressWarnings("checkstyle:WhitespaceAround")
   void displayTask() {
-    System.out.println("**********");
-    System.out.println("Task: " + name + " total time = " + calculateTotalTime());
+    logger.info("**********");
+    logger.info("Task: " + name + " total time = " + calculateTotalTime());
     if (started) {
-      System.out.println("Task Started: " + timeIntervals.get(0).getStartTime().getMonth() + "/"
+      logger.info("Task Started: " + timeIntervals.get(0).getStartTime().getMonth() + "/"
               + timeIntervals.get(0).getStartTime().getDayOfMonth() + "/"
               + timeIntervals.get(0).getStartTime().getYear());
     }
     for (int i = 0; i < timeIntervals.size(); i++) {
       if (i == 0) {
-        System.out.println("TIME INTERVALS: ");
+        logger.info("TIME INTERVALS: ");
       }
-      System.out.println("Interval " + (i + 1) + ": ");
-      System.out.println("From: " + timeIntervals.get(i).getStartTime().getMonth() + "/"
+      logger.info("Interval " + (i + 1) + ": ");
+      logger.info("From: " + timeIntervals.get(i).getStartTime().getMonth() + "/"
               + timeIntervals.get(i).getStartTime().getDayOfMonth() + "/"
               + timeIntervals.get(i).getStartTime().getYear() + "   "
               + timeIntervals.get(i).getStartTime().getHour() + ":"
               + timeIntervals.get(i).getStartTime().getMinute() + ":"
               + timeIntervals.get(i).getStartTime().getSecond());
       if (timeIntervals.get(i).getEndTime() != null) {
-        System.out.println("To: " + timeIntervals.get(i).getEndTime().getMonth() + "/"
+        logger.info("To: " + timeIntervals.get(i).getEndTime().getMonth() + "/"
                 + timeIntervals.get(i).getEndTime().getDayOfMonth() + "/"
                 + timeIntervals.get(i).getEndTime().getYear()
                 + "   " +  timeIntervals.get(i).getEndTime().getHour() + ":"
                 + timeIntervals.get(i).getEndTime().getMinute()
                 + ":" + timeIntervals.get(i).getEndTime().getSecond());
       } else {
-        System.out.println("Task in progress");
+        logger.info("Task in progress");
       }
     }
-    System.out.println("**********");
+    logger.info("**********");
   }
 }
 

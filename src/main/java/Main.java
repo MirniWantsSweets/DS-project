@@ -1,8 +1,11 @@
-public class Main {
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+public class Main{
 
   public static void main(String[] args) throws InterruptedException {
 
-
+    Logger logger = LoggerFactory.getLogger("TimeTracker.Main");
     SingletonClock.startTimer();
 
     //Creamos arbol de proyectos y tareas
@@ -62,59 +65,52 @@ public class Main {
     //Test B parecido al anterior en el que creamos arbol, mediante start y stop
     //creamos intervalos para las tascas y comprovamos que los tiempos de estas
     //sean correctos
-    /*System.out.println("/////////////////////////TEST B/////////////////////////////////////");
+    logger.info("/////////////////////////TEST B/////////////////////////////////////");
     Project test = new Project("TestB");
-    System.out.println("Creating Task Transportation...");
+    logger.info("Creating Task Transportation...");
     test.createNewTask("transportation", SingletonClock.getInstance());
     Task transportation = test.getChildTaskByName("transportation");
-    System.out.println("Ok, proceding to start transportation...");
+    logger.info("Ok, proceding to start transportation...");
     transportation.start(SingletonClock.getInstance());
-    System.out.println("Start Ok waiting 4 sec...");
+    logger.info("Start Ok waiting 4 sec...");
     Thread.sleep(4000);
-    System.out.println("Stoping transportation...");
+    logger.info("Stoping transportation...");
     transportation.stop(SingletonClock.getInstance());
-    System.out.println("Stop ok, printing task:");
+    logger.info("Stop ok, printing task:");
     transportation.displayTask();
     Thread.sleep(2000);
-    System.out.println("Creating Task FirstList...");
+    logger.info("Creating Task FirstList...");
     test.createNewTask("first list", SingletonClock.getInstance());
     Task firstlist = test.getChildTaskByName("first list");
-    System.out.println("Ok, proceding to start FirstList...");
+    logger.info("Ok, proceding to start FirstList...");
     firstlist.start(SingletonClock.getInstance());
-    System.out.println("Start Ok waiting 6 sec...");
+    logger.info("Start Ok waiting 6 sec...");
     Thread.sleep(6000);
-    System.out.println("Creating Task SecondList...");
+    logger.info("Creating Task SecondList...");
     test.createNewTask("second list", SingletonClock.getInstance());
     Task secondlist = test.getChildTaskByName("second list");
-    System.out.println("Ok, proceding to start SecondList...");
+    logger.info("Ok, proceding to start SecondList...");
     secondlist.start(SingletonClock.getInstance());
-    System.out.println("Start Ok waiting 4 sec...");
+    logger.info("Start Ok waiting 4 sec...");
     Thread.sleep(4000);
-    System.out.println("Stoping FirstList...");
+    logger.info("Stoping FirstList...");
     firstlist.stop(SingletonClock.getInstance());
-    System.out.println("Stop ok, printing task:");
+    logger.info("Stop ok, printing task:");
     firstlist.displayTask();
     Thread.sleep(2000);
-    System.out.println("Stoping SecondList...");
+    logger.info("Stoping SecondList...");
     secondlist.stop(SingletonClock.getInstance());
-    System.out.println("Stop ok, printing task:");
+    logger.info("Stop ok, printing task:");
     secondlist.displayTask();
     Thread.sleep(2000);
-    System.out.println("Proceding to start transportation again...");
+    logger.info("Proceding to start transportation again...");
     transportation.start(SingletonClock.getInstance());
-    System.out.println("Start Ok waiting 4 sec...");
+    logger.info("Start Ok waiting 4 sec...");
     Thread.sleep(4000);
-    System.out.println("Stoping transportation...");
+    logger.info("Stoping transportation...");
     transportation.stop(SingletonClock.getInstance());
-    System.out.println("Stop ok, printing task:");
-    transportation.displayTask();*/
-
-    Iterator it = new Iterator(paux);
-    it.next();
-    it.next();
-    it.next();
-    it.next();
-    it.next();
+    logger.info("Stop ok, printing task:");
+    transportation.displayTask();
   }
 
 }

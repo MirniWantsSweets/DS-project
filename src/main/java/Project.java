@@ -75,18 +75,18 @@ public class Project extends Node {
 
   //muestra informacion sobre los parametros del proyecto
   void displayProject() {
-    System.out.println("**********");
-    System.out.print("Project: " + getName());
+    logger.info("**********");
+    logger.info("Project: " + getName());
     float totalTime = 0;
     if (childsTask.isEmpty()) {
-      System.out.println("This Project doesn't have any started task yet");
+      logger.error("This Project doesn't have any started task yet");
     }
     for (int i = 0; i < numChildsTask; i++) {
       totalTime = totalTime + childsTask.get(i).calculateTotalTime();
     }
 
     if (!childsTask.isEmpty()) {
-      System.out.println('\n' + "Tasks total time: " + totalTime);
+      logger.info('\n' + "Tasks total time: " + totalTime);
     }
     this.totalTime = totalTime;
     totalTime = 0;
@@ -97,10 +97,10 @@ public class Project extends Node {
       }
     }
     if (!childsProject.isEmpty()) {
-      System.out.println("SubProjects total time: " + totalTime);
+      logger.info("SubProjects total time: " + totalTime);
     }
     this.totalTime = this.totalTime + totalTime;
-    System.out.println("**********");
+    logger.info("**********");
   }
 
   float calculateTotalTime() {
