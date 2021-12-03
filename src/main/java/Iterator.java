@@ -21,7 +21,6 @@ public class Iterator {
     taskList = new ArrayList();
     projectList = new ArrayList();
     root();
-
   }
 
   public Iterator(Project node) {
@@ -50,15 +49,25 @@ public class Iterator {
 
   void dfs(Project projectForSearch) {
 
-    for (int j = 0; j < projectForSearch.numChildsTask; j++) {
-      taskList.add(projectForSearch.childsTask.get(j));
+    for (int i = 0; i < projectForSearch.childs.size(); i++) {
+      if (projectForSearch.childs.get(i).getInstance() instanceof Project) {
+        projectList.add(projectForSearch.childs.get(i).getInstance());
+        dfs(projectForSearch.childs.get(i).getInstance());
+      }
+      else if (projectForSearch.childs.get(i).getInstance() instanceof Task) {
+        taskList.add(projectForSearch.childs.get(i).getInstance());
+      }
     }
 
-    for (int i = 0; i < projectForSearch.numChildsProject; i++) {
-      projectList.add(projectForSearch.childsProject.get(i));
+    // for (int j = 0; j < projectForSearch.numChildsTask; j++) {
+    //   taskList.add(projectForSearch.childsTask.get(j));
+    // }
 
-      dfs(projectForSearch.childsProject.get(i));
-    }
+    // for (int i = 0; i < projectForSearch.numChildsProject; i++) {
+    //   projectList.add(projectForSearch.childsProject.get(i));
+
+    //   dfs(projectForSearch.childsProject.get(i));
+    // }
 
   }
 
@@ -138,7 +147,7 @@ public class Iterator {
     for (int i = 0; i < projectList.size(); i++) {
       for (int j = 0; j < projectList.get(i).tags.size(); j++) {
         if (projectList.get(i).tags.get(j) == tag) {
-          projectList.get(i).displayProject();
+          projectList.get(i).display();
         }
       }
     }
@@ -146,7 +155,7 @@ public class Iterator {
     for (int i = 0; i < taskList.size(); i++) {
       for (int j = 0; j < taskList.get(i).tags.size(); j++) {
         if (taskList.get(i).tags.get(j) == tag) {
-          taskList.get(i).displayTask();
+          taskList.get(i).display();
         }
       }
     }
